@@ -4,10 +4,10 @@
 
 
 
-    ### install modules
+### install modules
 
-        npm install . 
+    npm install . 
 
-    ### run application
+### run application
 
-        npm run serve
+    npm run serve
