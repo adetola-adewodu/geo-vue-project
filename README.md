@@ -13,3 +13,8 @@
     npm run serve
 
 # Need to add TODO
+
+    Add address
+    Add 
+    List addresses
+    list longitude and latitude

@@ -2,7 +2,7 @@
 
 <template>
   <div style="height: 800px; width: 100%">
-    <div style="height: 200px overflow: auto;">
+    <!-- div style="height: 200px overflow: auto;">
        Latitude (N/S):
     <br>
     <input type="number" step="0.01" name="Latitude">
@@ -21,11 +21,11 @@
     <br>Radius (miles):
     <input type="number" step="0.01" name="addressRadius">
     <br>  
-      <!-- p>First marker is placed at {{ withPopup.lat }}, {{ withPopup.lng }}</p>
+      <p>First marker is placed at {{ withPopup.lat }}, {{ withPopup.lng }}</p>
       <p>Center is at {{ currentCenter }} and the zoom is: {{ currentZoom }}</p>
-      <button @click="showLongText">Toggle long popup</button -->
+      <button @click="showLongText">Toggle long popup</button >
       <button @click="showMap = !showMap">Toggle map</button>
-    </div>
+    </div-->
     <l-map
       v-if="showMap"
       :zoom="zoom"
@@ -90,6 +90,13 @@ export default {
       mapOptions: {
         zoomSnap: 0.5
       },
+      addresses: {},
+      inputData: {
+        street: "",
+        city: "", 
+        state: "", 
+        zip: ""
+      },
       showMap: true
     };
   },
@@ -99,6 +106,10 @@ export default {
     },
     centerUpdate(center) {
       this.currentCenter = center;
+    }, 
+    addItem() {
+        this.addresses = {...this.inputData}
+        this.inputData = {}
     }
   }
 };
