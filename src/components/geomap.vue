@@ -61,8 +61,6 @@ export default {
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      currentZoom: 10,
-      currentCenter: latLng(38.899283, -77.016231),
       showParagraph: false,
       mapOptions: {
         zoomSnap: 0.5
