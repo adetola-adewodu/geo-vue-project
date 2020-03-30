@@ -1,6 +1,8 @@
 <template>
+
   <div class="list-items">
     <div v-if="inputItems.length">
+    
       <div v-for="item in inputItems" :key="item.id">
         <div style="padding-bottom:6px">
           <ItemEntry :item="item" :handleDeleteFunc="handleDelete"/>
@@ -15,9 +17,12 @@
 
 <script>
 import ItemEntry from "./ItemEntry";
+
 export default {
   name: "ItemsList",
-  components: { ItemEntry },
+  components: { 
+    ItemEntry
+    },
   props: { inputItems: Array },
   methods: {
     handleDelete: function(_eventData) {

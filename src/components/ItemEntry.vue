@@ -4,7 +4,7 @@
     <input type="checkbox" v-model="item.on">
     <span
       :class="{ toggled: item['on']  }"
-    >{{ item.id }} : {{ item. latitude }} : {{ item.longitude }} : {{item.on}}</span>
+    >Latitude: {{ item. latitude }},  Latitude: {{ item.longitude }} : {{item.on}}</span>
   </div>
 </template>
 

@@ -36,27 +36,7 @@
       @update:zoom="zoomUpdate"
     >
       <l-tile-layer :url="url" :attribution="attribution"/>
-      <l-marker :lat-lng="withPopup">
-        <l-popup>
-          <div @click="innerClick">I am a popup
-            <p v-show="showParagraph">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              sed pretium nisl, ut sagittis sapien. Sed vel sollicitudin nisi.
-              Donec finibus semper metus id malesuada.
-            </p>
-          </div>
-        </l-popup>
-      </l-marker>
-      <l-marker :lat-lng="withTooltip">
-        <l-tooltip :options="{ permanent: true, interactive: true }">
-          <div @click="innerClick">My Home
-            <p v-show="showParagraph">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              sed pretium nisl, ut sagittis sapien. Sed vel sollicitudin nisi.
-              Donec finibus semper metus id malesuada.
-            </p>
-          </div>
-        </l-tooltip>
+      <l-marker  v-for="point in points" :key="point.id" :lat-lng="getLatLong(point.latitude, point.longitude)">
       </l-marker>
     </l-map>
   </div>
@@ -64,17 +44,16 @@
 
 <script>
 import { latLng } from "leaflet";
-import { LMap, LTileLayer, LMarker, LPopup, LTooltip } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker} from "vue2-leaflet";
 
 export default {
   name: "Example",
   components: {
     LMap,
     LTileLayer,
-    LMarker,
-    LPopup,
-    LTooltip
+    LMarker
   },
+  props: { points: Array },
   data() {
     return {
       zoom: 19,
@@ -82,20 +61,11 @@ export default {
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      withPopup: latLng(38.899283, -77.016231),
-      withTooltip: latLng(38.899283, -77.016231),
       currentZoom: 10,
       currentCenter: latLng(38.899283, -77.016231),
       showParagraph: false,
       mapOptions: {
         zoomSnap: 0.5
-      },
-      addresses: {},
-      inputData: {
-        street: "",
-        city: "", 
-        state: "", 
-        zip: ""
       },
       showMap: true
     };
@@ -108,8 +78,11 @@ export default {
       this.currentCenter = center;
     }, 
     addItem() {
-        this.addresses = {...this.inputData}
+        this.points = {...this.inputData}
         this.inputData = {}
+    },
+    getLatLong(latitude,longitude){
+      return latLng(latitude,longitude);
     }
   }
 };
