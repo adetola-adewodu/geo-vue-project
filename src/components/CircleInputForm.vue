@@ -1,13 +1,15 @@
 <template>
   <div class="input-form">
-    <h3>INPUT FORM</h3>
+    <h3>CIRCLE INPUT FORM</h3>
     <div>
       <input v-model="inputData.latitude" placeholder="Enter Latitude">
       <br>
       <input v-model="inputData.longitude" placeholder="Enter Longitude ">
       <br>
+      <input v-model="inputData.radius" placeholder="Enter Radius ">
+      <br>
       <p>
-        <button @click="handleAddItemClicked">ADD Point</button>
+        <button @click="handleAddItemClicked">ADD Circle</button>
       </p>
     </div>
   </div>
@@ -15,12 +17,13 @@
 
 <script>
 export default {
-  name: "InputForm",
+  name: "CircleInputForm",
   data() {
     return {
       inputData: {
         latitude: "",
-        longitude: ""
+        longitude: "",
+        radius: ""
       },
     };
   },
@@ -30,7 +33,8 @@ export default {
       this.$emit("add-item", eventData);
       this.inputData = {
         latitude: "",
-        longitude: ""
+        longitude: "", 
+        radius:""
       };
     }
   }

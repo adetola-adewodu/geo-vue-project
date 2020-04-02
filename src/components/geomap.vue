@@ -2,30 +2,6 @@
 
 <template>
   <div style="height: 800px; width: 100%">
-    <!-- div style="height: 200px overflow: auto;">
-       Latitude (N/S):
-    <br>
-    <input type="number" step="0.01" name="Latitude">
-    <br>Longitude (E/W):
-    <br>
-    <input type="number" step="0.01" name="Longitude">
-    <br>Radius (miles):
-    <br>
-    <input type="number" step="0.01" name="RadiusMiles">
-    <br>
-    <button onclick="createCircleFromCoordinates()">Create Circle From Coordinates</button>
-    <br>
-    <button onclick="removeCircle()">Remove Circles</button>
-    <br>City, State:
-    <input type="text" name="address">
-    <br>Radius (miles):
-    <input type="number" step="0.01" name="addressRadius">
-    <br>  
-      <p>First marker is placed at {{ withPopup.lat }}, {{ withPopup.lng }}</p>
-      <p>Center is at {{ currentCenter }} and the zoom is: {{ currentZoom }}</p>
-      <button @click="showLongText">Toggle long popup</button >
-      <button @click="showMap = !showMap">Toggle map</button>
-    </div-->
     <l-map
       v-if="showMap"
       :zoom="zoom"
@@ -36,22 +12,25 @@
       @update:zoom="zoomUpdate"
     >
       <l-tile-layer :url="url" :attribution="attribution"/>
-      <l-marker  v-for="point in points" :key="point.id" :lat-lng="getLatLong(point.latitude, point.longitude)">
-      </l-marker>
+      <div v-for="point in points" :key="point.id" style="padding: 6px">
+        <l-marker v-if="!point.radius" :point="point" :lat-lng="getLatLong(point.latitude, point.longitude)" />
+        <l-circle v-if="point.radius" :lat-lng="getLatLong(point.latitude, point.longitude)" :radius="point.radius"/>
+      </div>
     </l-map>
   </div>
 </template>
 
 <script>
 import { latLng } from "leaflet";
-import { LMap, LTileLayer, LMarker} from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LCircle} from "vue2-leaflet";
 
 export default {
   name: "Example",
   components: {
     LMap,
     LTileLayer,
-    LMarker
+    LMarker, 
+    LCircle
   },
   props: { points: Array },
   data() {
