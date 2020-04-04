@@ -1,17 +1,20 @@
 <template>
   <div id="app">
   <InputForm @add-item="addItem"/>
+  <ItemsList :inputItems="items" @delete-item="deleteItem" />
   <geomap :points="items"></geomap>
   </div>
 </template>
 
 <script>
 import InputForm from "../components/InputForm";
+import ItemsList from "../components/ItemsList";
 import geomap from "../components/geomap";
 export default {
   name: "App",
   components: {
      InputForm,
+     ItemsList,
     geomap
   },
   computed: {

@@ -5,7 +5,7 @@
     >
       <router-link to="/circles">CIRCLES</router-link>
       <router-link to="/points">POINTS</router-link>
-      <router-link to="/about">ABOUT</router-link>
+      <router-link to="/address">Address</router-link>
     </div>
     <router-view></router-view>
   </div>
